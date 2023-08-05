@@ -1,0 +1,2 @@
+# Password mysql
+MYSQL_ROOT_PASSWORD=PG2123456
