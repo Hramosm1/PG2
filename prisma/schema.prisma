@@ -1,0 +1,268 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model apellidos_empleados {
+  id_apellidos_empleados Int       @id @default(autoincrement())
+  id_empleado            Int?
+  no_orden               Int?
+  apellido               String?   @db.VarChar(255)
+  empleado               empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "apellidos_empleados_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model asistencia {
+  id_asistencia Int       @id @default(autoincrement())
+  id_empleado   Int?
+  fecha_hora    DateTime? @db.DateTime(0)
+  empleado      empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "asistencia_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model documento {
+  id_documento      Int             @id @default(autoincrement())
+  id_tipo_documento Int?
+  id_empleado       Int?
+  no_documento      String?         @db.VarChar(255)
+  tipo_documento    tipo_documento? @relation(fields: [id_tipo_documento], references: [id_tipo_documento], onDelete: NoAction, onUpdate: NoAction, map: "documento_ibfk_1")
+  empleado          empleado?       @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "documento_ibfk_2")
+
+  @@index([id_empleado], map: "id_empleado")
+  @@index([id_tipo_documento], map: "id_tipo_documento")
+}
+
+model email_empleado {
+  id_email_empleado     Int       @id @default(autoincrement())
+  id_empleado           Int?
+  email_empleado        String?   @db.VarChar(255)
+  estado_email_empleado Boolean?
+  empleado              empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "email_empleado_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model email_empresa {
+  id_email_empresa     Int      @id @default(autoincrement())
+  id_empresa           Int?
+  email_empresa        String?  @db.VarChar(255)
+  estado_email_empresa Boolean?
+  empresa              empresa? @relation(fields: [id_empresa], references: [id_empresa], onDelete: NoAction, onUpdate: NoAction, map: "email_empresa_ibfk_1")
+
+  @@index([id_empresa], map: "id_empresa")
+}
+
+model empleado {
+  id_empleado         Int                   @id @default(autoincrement())
+  id_puesto           Int?
+  apellidos_empleados apellidos_empleados[]
+  asistencia          asistencia[]
+  documento           documento[]
+  email_empleado      email_empleado[]
+  puesto              puesto?               @relation(fields: [id_puesto], references: [id_puesto], onDelete: NoAction, onUpdate: NoAction, map: "empleado_ibfk_1")
+  hora_extra          hora_extra[]
+  nombres_empleados   nombres_empleados[]
+  nomina              nomina[]
+  telefono_empleado   telefono_empleado[]
+
+  @@index([id_puesto], map: "id_puesto")
+}
+
+model empresa {
+  id_empresa        Int                 @id @default(autoincrement())
+  descripcion       String?             @db.VarChar(255)
+  id_estado         Int?
+  email_empresa     email_empresa[]
+  estado_empresa    estado_empresa?     @relation(fields: [id_estado], references: [id_estado_empresa], onDelete: NoAction, onUpdate: NoAction, map: "empresa_ibfk_1")
+  telefono_empresa  telefono_empresa?
+  tipo_contratacion tipo_contratacion[]
+
+  @@index([id_estado], map: "id_estado")
+}
+
+model entrevista {
+  id_entrevista        Int               @id @default(autoincrement())
+  id_estado_entrevista Int
+  id_plaza             Int
+  fecha_entrevista     DateTime?         @db.DateTime(0)
+  estado_entrevista    estado_entrevista @relation(fields: [id_estado_entrevista], references: [id_estado_entrevista], onDelete: NoAction, onUpdate: NoAction, map: "fk_entrevista_estado_entre")
+  plaza                plaza             @relation(fields: [id_plaza], references: [id_plaza], onDelete: NoAction, onUpdate: NoAction, map: "fk_entrevista_plaza")
+
+  @@index([id_estado_entrevista], map: "fk_entrevista_estado_entre")
+  @@index([id_plaza], map: "fk_entrevista_plaza")
+}
+
+model estado_empresa {
+  id_estado_empresa Int       @id @default(autoincrement())
+  descripcion       String?   @db.VarChar(255)
+  empresa           empresa[]
+}
+
+model estado_entrevista {
+  id_estado_entrevista Int          @id @default(autoincrement())
+  descripcion          String?      @db.VarChar(255)
+  entrevista           entrevista[]
+}
+
+model estado_plaza {
+  id_estado_plaza Int     @id @default(autoincrement())
+  descripcion     String? @db.VarChar(255)
+}
+
+model estado_publicacion {
+  id_estado_publicacion Int                 @id @default(autoincrement())
+  descripcion           String?             @db.VarChar(255)
+  publicacion_plaza     publicacion_plaza[]
+}
+
+model hora_extra {
+  id_hora_extra Int       @id @default(autoincrement())
+  id_empleado   Int?
+  fecha_hora    DateTime? @db.DateTime(0)
+  cantidad      Int?
+  empleado      empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "hora_extra_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model medio_difusion {
+  id_medio_difusion Int                 @id @default(autoincrement())
+  descripcion       String?             @db.VarChar(255)
+  publicacion_plaza publicacion_plaza[]
+}
+
+model modulos {
+  id_modulo   Int        @id @default(autoincrement())
+  descripcion String?    @db.VarChar(255)
+  estado      Boolean?
+  permisos    permisos[]
+}
+
+model nombres_empleados {
+  id_nombres_empleados Int       @id @default(autoincrement())
+  id_empleado          Int?
+  no_orden             Int?
+  nombre               String?   @db.VarChar(255)
+  empleado             empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "nombres_empleados_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model nomina {
+  id_nomina    Int       @id @default(autoincrement())
+  id_empleado  Int?
+  fecha_inicio DateTime? @db.DateTime(0)
+  fecha_fin    DateTime? @db.DateTime(0)
+  empleado     empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "nomina_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model permisos {
+  id_permiso Int      @id @default(autoincrement())
+  id_modulo  Int?
+  id_rol     Int?
+  r          Boolean?
+  w          Boolean?
+  u          Boolean?
+  d          Boolean?
+  modulos    modulos? @relation(fields: [id_modulo], references: [id_modulo], onDelete: NoAction, onUpdate: NoAction, map: "permisos_ibfk_1")
+  rol        rol?     @relation(fields: [id_rol], references: [id_rol], onDelete: NoAction, onUpdate: NoAction, map: "permisos_ibfk_2")
+
+  @@index([id_modulo], map: "id_modulo")
+  @@index([id_rol], map: "id_rol")
+}
+
+model plaza {
+  id_plaza          Int                 @id @default(autoincrement())
+  id_estado_plaza   Int
+  descripcion       String?             @db.VarChar(255)
+  entrevista        entrevista[]
+  publicacion_plaza publicacion_plaza[]
+}
+
+model publicacion_plaza {
+  id_publicacion_plaza  Int                @id @default(autoincrement())
+  id_plaza              Int
+  id_medio_difusion     Int
+  id_estado_publicacion Int
+  fecha_publicacion     DateTime?          @db.DateTime(0)
+  estado_publicacion    estado_publicacion @relation(fields: [id_estado_publicacion], references: [id_estado_publicacion], onDelete: NoAction, onUpdate: NoAction, map: "fk_publicacion_plaza_estado")
+  medio_difusion        medio_difusion     @relation(fields: [id_medio_difusion], references: [id_medio_difusion], onDelete: NoAction, onUpdate: NoAction, map: "fk_publicacion_plaza_medio")
+  plaza                 plaza              @relation(fields: [id_plaza], references: [id_plaza], onDelete: NoAction, onUpdate: NoAction, map: "fk_publicacion_plaza_plaza")
+
+  @@index([id_estado_publicacion], map: "fk_publicacion_plaza_estado")
+  @@index([id_medio_difusion], map: "fk_publicacion_plaza_medio")
+  @@index([id_plaza], map: "fk_publicacion_plaza_plaza")
+}
+
+model puesto {
+  id_puesto            Int                @id @default(autoincrement())
+  id_tipo_contratacion Int?
+  salario_mensual      Decimal?           @db.Decimal(15, 2)
+  descripcion          String?            @db.VarChar(255)
+  empleado             empleado[]
+  tipo_contratacion    tipo_contratacion? @relation(fields: [id_tipo_contratacion], references: [id_tipo_contratacion], onDelete: NoAction, onUpdate: NoAction, map: "puesto_ibfk_1")
+
+  @@index([id_tipo_contratacion], map: "id_tipo_contratacion")
+}
+
+model rol {
+  id_rol      Int        @id @default(autoincrement())
+  descripcion String?    @db.VarChar(255)
+  estado      Boolean?
+  permisos    permisos[]
+  usuarios    usuarios[]
+}
+
+model telefono_empleado {
+  id_telefono_empleado     Int       @id @default(autoincrement())
+  id_empleado              Int?
+  telefono_empleado        String?   @db.VarChar(255)
+  estado_telefono_empleado Boolean?
+  empleado                 empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "telefono_empleado_ibfk_1")
+
+  @@index([id_empleado], map: "id_empleado")
+}
+
+model telefono_empresa {
+  id_telefono_empresa     Int      @id @default(autoincrement())
+  id_empresa              Int?
+  telefono                String?  @db.VarChar(255)
+  estado_telefono_empresa Boolean?
+  empresa                 empresa  @relation(fields: [id_telefono_empresa], references: [id_empresa], onDelete: NoAction, onUpdate: NoAction, map: "telefono_empresa_ibfk_1")
+}
+
+model tipo_contratacion {
+  id_tipo_contratacion Int      @id @default(autoincrement())
+  id_empresa           Int?
+  descripcion          String?  @db.VarChar(255)
+  puesto               puesto[]
+  empresa              empresa? @relation(fields: [id_empresa], references: [id_empresa], onDelete: NoAction, onUpdate: NoAction, map: "tipo_contratacion_ibfk_1")
+
+  @@index([id_empresa], map: "id_empresa")
+}
+
+model tipo_documento {
+  id_tipo_documento Int         @id @default(autoincrement())
+  descripcion       String?     @db.VarChar(255)
+  estado_documento  Boolean?
+  documento         documento[]
+}
+
+model usuarios {
+  id_usuario Int     @id @default(autoincrement())
+  id_rol     Int?
+  usuario    String? @db.VarChar(255)
+  email      String? @db.VarChar(255)
+  password   String? @db.VarChar(255)
+  rol        rol?    @relation(fields: [id_rol], references: [id_rol], onDelete: NoAction, onUpdate: NoAction, map: "usuarios_ibfk_1")
+
+  @@index([id_rol], map: "id_rol")
+}
