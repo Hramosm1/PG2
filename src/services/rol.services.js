@@ -2,9 +2,6 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 class rolService {
-    constructor(){
-        this.roles = [];
-    }
     async create(data){
         try {
             const rolCreate = await prisma.rol.create({
@@ -47,7 +44,6 @@ class rolService {
                 estado: changes.estado,
             }
         });
-
         return updateRol;
     }
 
@@ -57,7 +53,6 @@ class rolService {
                 id_rol: parseInt(id),
             },
         });
-
         return deleteRol;
     }
 }
