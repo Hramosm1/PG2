@@ -25,7 +25,7 @@ router.post('/', validatorHandler(createRolSchema, 'body'),
 });
 
 router.patch('/:id', 
-    validatorHandler(createRolSchema, 'body'),
+    validatorHandler(updateRolSchema, 'body'),
     async (req, res) =>{
         const { id } = req.params;
         const body = req.body;

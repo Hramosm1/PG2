@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id_rol = Joi.number();
-const descripcion = Joi.string().min(3).max(15);
+const descripcion = Joi.string().min(3).max(20);
 const estado = Joi.bool();
 
 const createRolSchema = Joi.object({
