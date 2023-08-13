@@ -1,10 +1,13 @@
 const expres = require('express');
 const rolService = require('../services/rol.services')
 const validatorHandler = require('./../middlewares/validator.handler');
+const authMiddleware  = require('./../middlewares/auth');
+
 const { createRolSchema, updateRolSchema, getRolSchema } = require('./../schemas/rolSchema');
 
 const router = expres.Router();
 const service = new rolService();
+
 
 router.get('/', async (req,res) =>{
     const roles = await service.find();
@@ -17,26 +20,43 @@ router.get('/:id', async (req,res) => {
     res.json(rol);
 });
 
-router.post('/', validatorHandler(createRolSchema, 'body'),
+router.post('/',
+    authMiddleware.authenticateToken,
+    validatorHandler(createRolSchema, 'body'),
     async (req,res) => {
-        const body = req.body;
-        const createRol = await service.create(body);
-        res.status(201).json(createRol);
+        try {
+            const body = req.body;
+            const createRol = await service.create(body);
+            res.status(201).json(createRol);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al crear el rol' });
+        }
 });
 
-router.patch('/:id', 
+router.patch('/:id',
+    authMiddleware.authenticateToken,
     validatorHandler(updateRolSchema, 'body'),
     async (req, res) =>{
-        const { id } = req.params;
-        const body = req.body;
-        const updateRol = await service.update(id, body);
-        res.json(updateRol);
+        try {
+            const { id } = req.params;
+            const body = req.body;
+            const updateRol = await service.update(id, body);
+            res.json(updateRol);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al actualizar el rol' });
+        }
 })
 
-router.delete('/:id', async (req,res) => {
-    const { id } = req.params;
-    const deleteRol = await service.delete(id);
-    res.json(deleteRol);
+router.delete('/:id', 
+    authMiddleware.authenticateToken,
+    async (req,res) => {
+        try {
+            const { id } = req.params;
+            const deleteRol = await service.delete(id);
+            res.json(deleteRol);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al eliminar el rol' });
+        }
 });
 
 module.exports = router;
