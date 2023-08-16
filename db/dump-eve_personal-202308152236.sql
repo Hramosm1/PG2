@@ -19,6 +19,7 @@
 -- Table structure for table `apellidos_empleados`
 --
 
+DROP TABLE IF EXISTS `apellidos_empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `apellidos_empleados` (
@@ -45,6 +46,7 @@ UNLOCK TABLES;
 -- Table structure for table `asistencia`
 --
 
+DROP TABLE IF EXISTS `asistencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `asistencia` (
@@ -70,6 +72,7 @@ UNLOCK TABLES;
 -- Table structure for table `documento`
 --
 
+DROP TABLE IF EXISTS `documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `documento` (
@@ -98,6 +101,7 @@ UNLOCK TABLES;
 -- Table structure for table `email_empleado`
 --
 
+DROP TABLE IF EXISTS `email_empleado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `email_empleado` (
@@ -124,6 +128,7 @@ UNLOCK TABLES;
 -- Table structure for table `email_empresa`
 --
 
+DROP TABLE IF EXISTS `email_empresa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `email_empresa` (
@@ -150,6 +155,7 @@ UNLOCK TABLES;
 -- Table structure for table `empleado`
 --
 
+DROP TABLE IF EXISTS `empleado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empleado` (
@@ -174,6 +180,7 @@ UNLOCK TABLES;
 -- Table structure for table `empresa`
 --
 
+DROP TABLE IF EXISTS `empresa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empresa` (
@@ -199,6 +206,7 @@ UNLOCK TABLES;
 -- Table structure for table `entrevista`
 --
 
+DROP TABLE IF EXISTS `entrevista`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entrevista` (
@@ -227,6 +235,7 @@ UNLOCK TABLES;
 -- Table structure for table `estado_empresa`
 --
 
+DROP TABLE IF EXISTS `estado_empresa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estado_empresa` (
@@ -249,6 +258,7 @@ UNLOCK TABLES;
 -- Table structure for table `estado_entrevista`
 --
 
+DROP TABLE IF EXISTS `estado_entrevista`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estado_entrevista` (
@@ -271,6 +281,7 @@ UNLOCK TABLES;
 -- Table structure for table `estado_plaza`
 --
 
+DROP TABLE IF EXISTS `estado_plaza`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estado_plaza` (
@@ -293,6 +304,7 @@ UNLOCK TABLES;
 -- Table structure for table `estado_publicacion`
 --
 
+DROP TABLE IF EXISTS `estado_publicacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estado_publicacion` (
@@ -315,6 +327,7 @@ UNLOCK TABLES;
 -- Table structure for table `hora_extra`
 --
 
+DROP TABLE IF EXISTS `hora_extra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hora_extra` (
@@ -341,6 +354,7 @@ UNLOCK TABLES;
 -- Table structure for table `medio_difusion`
 --
 
+DROP TABLE IF EXISTS `medio_difusion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medio_difusion` (
@@ -363,6 +377,7 @@ UNLOCK TABLES;
 -- Table structure for table `modulos`
 --
 
+DROP TABLE IF EXISTS `modulos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modulos` (
@@ -386,6 +401,7 @@ UNLOCK TABLES;
 -- Table structure for table `nombres_empleados`
 --
 
+DROP TABLE IF EXISTS `nombres_empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nombres_empleados` (
@@ -412,6 +428,7 @@ UNLOCK TABLES;
 -- Table structure for table `nomina`
 --
 
+DROP TABLE IF EXISTS `nomina`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nomina` (
@@ -438,6 +455,7 @@ UNLOCK TABLES;
 -- Table structure for table `permisos`
 --
 
+DROP TABLE IF EXISTS `permisos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisos` (
@@ -469,6 +487,7 @@ UNLOCK TABLES;
 -- Table structure for table `plaza`
 --
 
+DROP TABLE IF EXISTS `plaza`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `plaza` (
@@ -492,6 +511,7 @@ UNLOCK TABLES;
 -- Table structure for table `publicacion_plaza`
 --
 
+DROP TABLE IF EXISTS `publicacion_plaza`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `publicacion_plaza` (
@@ -523,6 +543,7 @@ UNLOCK TABLES;
 -- Table structure for table `puesto`
 --
 
+DROP TABLE IF EXISTS `puesto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `puesto` (
@@ -549,6 +570,7 @@ UNLOCK TABLES;
 -- Table structure for table `rol`
 --
 
+DROP TABLE IF EXISTS `rol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rol` (
@@ -556,7 +578,7 @@ CREATE TABLE `rol` (
   `descripcion` varchar(255) DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -565,6 +587,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'Desarrollo',1),(2,'Administracion',1),(3,'RRHH',1),(4,'Reclutador',1),(5,'test 2',0),(7,'Gerencia',1),(8,'Gerencia general',1),(9,'Test token',1);
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,6 +595,7 @@ UNLOCK TABLES;
 -- Table structure for table `telefono_empleado`
 --
 
+DROP TABLE IF EXISTS `telefono_empleado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `telefono_empleado` (
@@ -598,6 +622,7 @@ UNLOCK TABLES;
 -- Table structure for table `telefono_empresa`
 --
 
+DROP TABLE IF EXISTS `telefono_empresa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `telefono_empresa` (
@@ -623,6 +648,7 @@ UNLOCK TABLES;
 -- Table structure for table `tipo_contratacion`
 --
 
+DROP TABLE IF EXISTS `tipo_contratacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_contratacion` (
@@ -648,6 +674,7 @@ UNLOCK TABLES;
 -- Table structure for table `tipo_documento`
 --
 
+DROP TABLE IF EXISTS `tipo_documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_documento` (
@@ -671,6 +698,7 @@ UNLOCK TABLES;
 -- Table structure for table `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
@@ -682,7 +710,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id_usuario`),
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -691,6 +719,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,1,'hramos','admin@gmail.com','123456789'),(2,1,'mleiva','admin@gmail.com','123456789'),(3,2,'bmendez','bmendez@gmail.com','123456789'),(4,1,'sperez','sperez@gmail.com','123456789');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -707,4 +736,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-05 22:55:08
+-- Dump completed on 2023-08-15 22:36:17
