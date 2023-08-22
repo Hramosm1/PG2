@@ -1,4 +1,3 @@
-const { join } = require('@prisma/client/runtime/library');
 const Joi = require('joi');
 
 const id_usuario = Joi.number();
