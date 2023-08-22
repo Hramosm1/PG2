@@ -54,8 +54,8 @@ router.delete('/:id',
             const { id } = req.params;
             const deleteRol = await service.delete(id);
             res.json(deleteRol);
-        } catch (error) {
-            res.status(500).json({ error: 'Error al eliminar el rol' });
+        } catch (err) {
+            res.status(500).json({ error: err });
         }
 });
 
