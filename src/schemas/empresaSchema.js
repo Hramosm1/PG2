@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const id_empresa = Joi.number();
 const descripcion = Joi.string();
-const id_estado = Joi.bool();
+const id_estado = Joi.number();
 
 const createEmpresaSchema = Joi.object({
     descripcion: descripcion.required(),

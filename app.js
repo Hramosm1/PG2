@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
+
+const estadoEmpresaRouter = require('./src/router/estadoEmpresa.router')
+const empresaRouter = require('./src/router/empresa.router')
 const rolRouter = require('./src/router/rol.router')
 const usuarioRouter = require('./src/router/usaurio.router');
 const loginRouter = require('./src/router/login');
-const cors = require('cors');
+
 
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
 
@@ -21,6 +25,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+
+app.use('/estadoEmpresa',estadoEmpresaRouter);
+app.use('/empresa',empresaRouter);
 app.use('/rol',rolRouter);
 app.use('/usuario',usuarioRouter);
 app.use('/login', loginRouter);

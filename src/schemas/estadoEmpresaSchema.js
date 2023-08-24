@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id_estado_empresa = Joi.number();
-const descripcion = Joi.string().min(8);
+const descripcion = Joi.string().min(3);
 
 const createEstadoEmpresa = Joi.object({
     descripcion: descripcion.required(),
