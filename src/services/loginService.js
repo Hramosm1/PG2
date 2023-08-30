@@ -22,7 +22,7 @@ const loginUser = async (identifier, password) => {
       throw new Error('Contraseña incorrecta');
     }
 
-    const token = jwt.sign({ id: user.id_usuario }, process.env.SECRET_KEY, { expiresIn: '2h' });
+    const token = jwt.sign({ id: user.id_usuario }, process.env.SECRET_KEY, { expiresIn: '24h' });
 
     return token;
   } catch (error) {
