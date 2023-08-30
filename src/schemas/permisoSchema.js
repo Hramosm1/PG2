@@ -3,10 +3,10 @@ const Joi = require('joi');
 const id_permiso = Joi.number();
 const id_modulo = Joi.number();
 const id_rol = Joi.number();
-const r = Joi.number();
-const w = Joi.number();
-const u = Joi.number();
-const d = Joi.number();
+const r = Joi.boolean();
+const w = Joi.boolean();
+const u = Joi.boolean();
+const d = Joi.boolean();
 
 const createPermisoSchema = Joi.object({
     id_modulo: id_modulo.required(),

@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 
-const moduloRouter = require('./src/router/modulo.router')
-const telefonoEmpresaRouter = require('./src/router/telefonoEmpresa.router')
-const estadoEmpresaRouter = require('./src/router/estadoEmpresa.router')
-const empresaRouter = require('./src/router/empresa.router')
-const rolRouter = require('./src/router/rol.router')
+const permisoRouter = require('./src/router/permisos.router');
+const moduloRouter = require('./src/router/modulo.router');
+const telefonoEmpresaRouter = require('./src/router/telefonoEmpresa.router');
+const estadoEmpresaRouter = require('./src/router/estadoEmpresa.router');
+const empresaRouter = require('./src/router/empresa.router');
+const rolRouter = require('./src/router/rol.router');
 const usuarioRouter = require('./src/router/usaurio.router');
 const loginRouter = require('./src/router/login');
 
@@ -27,6 +28,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+app.use('/permiso',permisoRouter);
 app.use('/modulo',moduloRouter);
 app.use('/telefonoEmpresa',telefonoEmpresaRouter);
 app.use('/estadoEmpresa',estadoEmpresaRouter);
