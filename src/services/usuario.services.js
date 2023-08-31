@@ -18,12 +18,33 @@ class usuarioService {
         }
     }
     async find(){
-        const usuarios = await prisma.usuarios.findMany();
-        return usuarios;
+        const usaurios = await prisma.usuarios.findMany({
+            select: {
+                id_usuario: true,
+                usuario: true,
+                email: true,
+                rol: {
+                    select:{
+                        descripcion: true
+                    }
+                }
+            }
+        });
+        return usaurios; 
     }
     async findOne(id){
         try {
             const usuarioOne = await prisma.usuarios.findUnique({
+                select: {
+                    id_usuario: true,
+                    usuario: true,
+                    email: true,
+                    rol: {
+                        select:{
+                            descripcion: true
+                        }
+                    }
+                },
                 where: {
                     id_usuario: parseInt(id),
                 },
