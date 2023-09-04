@@ -26,7 +26,7 @@ const loginUser = async (identifier, password) => {
 
     return token;
   } catch (error) {
-    throw new Error('Error al iniciar sesión' + error);
+    throw new Error(error);
   }
 };
 
