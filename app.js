@@ -9,6 +9,7 @@ const empresaRouter = require('./src/router/empresa.router');
 const rolRouter = require('./src/router/rol.router');
 const usuarioRouter = require('./src/router/usaurio.router');
 const loginRouter = require('./src/router/login');
+const plazaRouter = require('./src/router/plaza.router');
 
 
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
@@ -28,6 +29,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+app.use('/plaza', plazaRouter);
 app.use('/permiso',permisoRouter);
 app.use('/modulo',moduloRouter);
 app.use('/telefonoEmpresa',telefonoEmpresaRouter);

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id_plaza = Joi.number();
-const id_estado_plaza = Joi.number();
+const id_estado_plaza = Joi.bool();
 const descripcion = Joi.string();
 
 const createPlazaSchema = Joi.object({
