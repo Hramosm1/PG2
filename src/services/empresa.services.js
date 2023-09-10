@@ -24,6 +24,18 @@ class empresaService {
     async findOne(id){
         try {
             const empresaOne = await prisma.empresa.findUnique({
+                select:{
+                    id_empresa: true,
+                    descripcion: true,
+                    id_estado: true,
+                    estado_empresa: {
+                        select: {
+                            id_estado_empresa: true,
+                            descripcion: true
+                        }
+
+                    },
+                },
                 where: {
                     id_empresa: parseInt(id),
                 },

@@ -29,7 +29,7 @@ router.post('/',
             const createPlaza = await service.create(body);
             res.status(201).json(createPlaza);
         } catch (error) {
-            res.status(500).json({ error: 'Error al crear el rol' });
+            res.status(500).json({ error: 'Error al crear la plaza' });
         }
 });
 

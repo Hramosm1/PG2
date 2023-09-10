@@ -4,7 +4,7 @@ const id_usuario = Joi.number();
 const id_rol = Joi.number();
 const usuario = Joi.string();
 const email = Joi.string();
-const password = Joi.string().min(8).max(12);
+const password = Joi.string().min(8);
 
 const createUsuarioSchema = Joi.object({
     id_rol: id_rol.required(),

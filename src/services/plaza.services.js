@@ -6,7 +6,7 @@ class plazaService {
         try {
             const plazaCreate = await prisma.plaza.create({
                 data: {
-                    id_estado_plaza: data.estado,
+                    id_estado_plaza: data.id_estado_plaza,
                     descripcion: data.descripcion,
                 }
             })
@@ -44,7 +44,7 @@ class plazaService {
                 descripcion: changes.descripcion,
             }
         });
-        return updateRol;
+        return updatePlaza;
     }
 
     async delete(id){
