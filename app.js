@@ -11,6 +11,7 @@ const usuarioRouter = require('./src/router/usaurio.router');
 const loginRouter = require('./src/router/login');
 const plazaRouter = require('./src/router/plaza.router');
 const estadoPublicacionRouter = require('./src/router/estadoPublicacion.router');
+const medioDifusion = require('./src/router/medioDifusion.router');
 
 
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
@@ -30,6 +31,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+app.use('/medio-difusion', medioDifusion);
 app.use('/estado-publicacion', estadoPublicacionRouter);
 app.use('/plaza', plazaRouter);
 app.use('/permiso',permisoRouter);

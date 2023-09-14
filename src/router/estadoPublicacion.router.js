@@ -1,12 +1,12 @@
 const expres = require('express');
-const estadoPublicacion = require('../services/estadoPublicacion.services')
+const estadoPublicacionService = require('../services/estadoPublicacion.services')
 const validatorHandler = require('./../middlewares/validator.handler');
 const authMiddleware  = require('./../middlewares/auth');
 
 const { createEstadoPublicacionSchema, updateEstadoPublicacionSchema, getEstadoPublicacionSchema } = require('./../schemas/estadoPublicacionSchema');
 
 const router = expres.Router();
-const service = new estadoPublicacion();
+const service = new estadoPublicacionService();
 
 
 router.get('/', async (req,res) =>{
