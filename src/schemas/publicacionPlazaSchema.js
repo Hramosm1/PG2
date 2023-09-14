@@ -7,10 +7,10 @@ const id_estado_publicacion = Joi.number();
 const fecha_publicacion = Joi.date();
 
 const createEstadoPublicacionSchema = Joi.object({
-    id_plaza: id_plaza.require(),
-    id_medio_difusion: id_medio_difusion.require(),
-    id_estado_publicacion: id_estado_publicacion.require(),
-    fecha_publicacion: fecha_publicacion.require(),
+    id_plaza: id_plaza.required(),
+    id_medio_difusion: id_medio_difusion.required(),
+    id_estado_publicacion: id_estado_publicacion.required(),
+    fecha_publicacion: fecha_publicacion.required(),
 });
 
 const updateEstadoPublicacionSchema = Joi.object({
