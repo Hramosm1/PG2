@@ -19,13 +19,64 @@ class publicacionPlazaService {
     }
 
     async find(){
-        const finds = await prisma.publicacion_plaza.findMany();
+        const finds = await prisma.publicacion_plaza.findMany({
+            select: {
+                id_publicacion_plaza: true,
+                id_plaza: true,
+                id_medio_difusion: true,
+                id_estado_publicacion: true,
+                fecha_publicacion: true,
+                plaza: {
+                    select: {
+                        id_plaza: true,
+                        descripcion: true
+                    }
+                },
+                medio_difusion: {
+                    select: {
+                        id_medio_difusion: true,
+                        descripcion: true
+                    }
+                },
+                estado_publicacion: {
+                    select: {
+                        id_estado_publicacion: true,
+                        descripcion: true
+                    }
+                }
+            }
+        });
         return finds; 
     }
 
     async findOne(id){
         try {
             const findOne = await prisma.publicacion_plaza.findUnique({
+                select: {
+                    id_publicacion_plaza: true,
+                    id_plaza: true,
+                    id_medio_difusion: true,
+                    id_estado_publicacion: true,
+                    fecha_publicacion: true,
+                    plaza: {
+                        select: {
+                            id_plaza: true,
+                            descripcion: true
+                        }
+                    },
+                    medio_difusion: {
+                        select: {
+                            id_medio_difusion: true,
+                            descripcion: true
+                        }
+                    },
+                    estado_publicacion: {
+                        select: {
+                            id_estado_publicacion: true,
+                            descripcion: true
+                        }
+                    }
+                },
                 where: {
                     id_publicacion_plaza: parseInt(id),
                 },
@@ -37,18 +88,22 @@ class publicacionPlazaService {
     }
 
     async update(id, changes){
-        const update = await prisma.publicacion_plaza.update({
-            where: {
-                id_publicacion_plaza: parseInt(id),
-            },
-            data: {
-                id_plaza: changes.id_plaza,
-                id_medio_difusion: changes.id_medio_difusion,
-                id_estado_publicacion: changes.id_estado_publicacion,
-                fecha_publicacion: data.fecha_publicacion
-            }
-        });
-        return update;
+        try {
+            const update = await prisma.publicacion_plaza.update({
+                where: {
+                    id_publicacion_plaza: parseInt(id),
+                },
+                data: {
+                    id_plaza: changes.id_plaza,
+                    id_medio_difusion: changes.id_medio_difusion,
+                    id_estado_publicacion: changes.id_estado_publicacion,
+                    fecha_publicacion: changes.fecha_publicacion
+                }
+            });
+            return update;
+        } catch (error) {
+            return error;
+        }
     }
 
     async delete(id){
