@@ -59,8 +59,9 @@ class entrevistaService {
                         }
                     },
                     plaza: {
-                        id_plaza: true,
-                        descripcion: true
+                        select: {
+                            descripcion: true
+                        }
                     }
                 },
                 where: {
