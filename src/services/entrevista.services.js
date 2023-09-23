@@ -27,19 +27,20 @@ class entrevistaService {
                     fecha_entrevista: true,
                     estado_entrevista: {
                         select: {
-                            id_estado_entrevista: true,
                             descripcion: true
                         }
                     },
                     plaza: {
-                        id_plaza: true,
-                        descripcion: true
+                        select: {
+                            descripcion: true
+                        }
                     }
                 }
             });
             return find;
         } catch (error) {
             return error;
+            console.log(error)
         }
     }
 
