@@ -14,6 +14,7 @@ const estadoPublicacionRouter = require('./src/router/estadoPublicacion.router')
 const medioDifusion = require('./src/router/medioDifusion.router');
 const publicacionPlaza = require('./src/router/publicacionPlaza.router');
 const estadosEntrevista = require('./src/router/estadoEntrevista.router');
+const entrevista = require('./src/router/entrevista.router');
 
 
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
@@ -33,6 +34,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+app.use('/entrevista', entrevista);
 app.use('/estados-entrevista', estadosEntrevista);
 app.use('/publicacion-plaza', publicacionPlaza);
 app.use('/medio-difusion', medioDifusion);

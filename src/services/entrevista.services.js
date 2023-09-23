@@ -18,13 +18,50 @@ class entrevistaService {
     }
 
     async find(){
-        const find = await prisma.entrevista.findMany();
-        return find; 
+        try {
+            const find = await prisma.entrevista.findMany({
+                select:{
+                    id_entrevista: true,
+                    id_estado_entrevista: true,
+                    id_plaza: true,
+                    fecha_entrevista: true,
+                    estado_entrevista: {
+                        select: {
+                            id_estado_entrevista: true,
+                            descripcion: true
+                        }
+                    },
+                    plaza: {
+                        id_plaza: true,
+                        descripcion: true
+                    }
+                }
+            });
+            return find;
+        } catch (error) {
+            return error;
+        }
     }
 
     async findOne(id){
         try {
             const findOne = await prisma.entrevista.findUnique({
+                select:{
+                    id_entrevista: true,
+                    id_estado_entrevista: true,
+                    id_plaza: true,
+                    fecha_entrevista: true,
+                    estado_entrevista: {
+                        select: {
+                            id_estado_entrevista: true,
+                            descripcion: true
+                        }
+                    },
+                    plaza: {
+                        id_plaza: true,
+                        descripcion: true
+                    }
+                },
                 where: {
                     id_entrevista: parseInt(id),
                 },

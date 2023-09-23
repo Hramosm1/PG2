@@ -22,7 +22,7 @@ router.get('/:id', async (req,res) => {
 
 router.post('/',
     authMiddleware.authenticateToken,
-    validatorHandler(createEstadoEntrevistaSchema, 'body'),
+    validatorHandler(createEntrevistaSchema, 'body'),
     async (req,res) => {
         try {
             const body = req.body;
@@ -35,7 +35,7 @@ router.post('/',
 
 router.patch('/:id',
     authMiddleware.authenticateToken,
-    validatorHandler(updateEstadoEntrevistaSchema, 'body'),
+    validatorHandler(updateEntrevistaSchema, 'body'),
     async (req, res) =>{
         try {
             const { id } = req.params;
