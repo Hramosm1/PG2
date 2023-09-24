@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id_modulo = Joi.number();
-const descripcion = Joi.string().min(8);
+const descripcion = Joi.string();
 const estado = Joi.bool();
 
 const createModuloSchema = Joi.object({
