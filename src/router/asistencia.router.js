@@ -28,8 +28,8 @@ router.post('/',
             const body = req.body;
             const create = await service.create(body);
             res.status(201).json(create);
-        } catch (error) {
-            res.status(500).json({ error: 'Error al crear la asistencia' });
+        } catch (err) {
+            res.status(500).json({ error: err });
         }
 });
 
@@ -42,8 +42,8 @@ router.patch('/:id',
             const body = req.body;
             const update = await service.update(id, body);
             res.json(update);
-        } catch (error) {
-            res.status(500).json({ error: 'Error al actualizar la asistencia' });
+        } catch (err) {
+            res.status(500).json({ error: err });
         }
 })
 

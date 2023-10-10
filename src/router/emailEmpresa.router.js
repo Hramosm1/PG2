@@ -1,12 +1,12 @@
 const expres = require('express');
-const documento = require('../services/documento.services')
+const emailEmpresa = require('../services/emailEmpresa.services')
 const validatorHandler = require('./../middlewares/validator.handler');
 const authMiddleware  = require('./../middlewares/auth');
 
-const { createDocumentoSchema, updateDocumentoSchema, getDocumentoSchema } = require('./../schemas/documentoSchema');
+const { createEmailEmpreSchema, updateEmailEmpreSchema, getEmailEmpreSchema } = require('./../schemas/emailEmpresaSchema');
 
 const router = expres.Router();
-const service = new documento();
+const service = new emailEmpresa();
 
 
 router.get('/', async (req,res) =>{
@@ -22,20 +22,20 @@ router.get('/:id', async (req,res) => {
 
 router.post('/',
     authMiddleware.authenticateToken,
-    validatorHandler(createDocumentoSchema, 'body'),
+    validatorHandler(createEmailEmpreSchema, 'body'),
     async (req,res) => {
         try {
             const body = req.body;
             const create = await service.create(body);
             res.status(201).json(create);
         } catch (err) {
-            res.status(500).json({ error: err });
+            res.status(500).json({ error:err});
         }
 });
 
 router.patch('/:id',
     authMiddleware.authenticateToken,
-    validatorHandler(updateDocumentoSchema, 'body'),
+    validatorHandler(updateEmailEmpreSchema, 'body'),
     async (req, res) =>{
         try {
             const { id } = req.params;

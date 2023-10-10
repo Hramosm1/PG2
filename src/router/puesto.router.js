@@ -1,12 +1,12 @@
 const expres = require('express');
-const documento = require('../services/documento.services')
+const puesto = require('../services/puesto.services')
 const validatorHandler = require('./../middlewares/validator.handler');
 const authMiddleware  = require('./../middlewares/auth');
 
-const { createDocumentoSchema, updateDocumentoSchema, getDocumentoSchema } = require('./../schemas/documentoSchema');
+const { createPuestoSchema, updatePuestoSchema, getPuestoSchema } = require('./../schemas/puestoSchema');
 
 const router = expres.Router();
-const service = new documento();
+const service = new puesto();
 
 
 router.get('/', async (req,res) =>{
@@ -22,20 +22,20 @@ router.get('/:id', async (req,res) => {
 
 router.post('/',
     authMiddleware.authenticateToken,
-    validatorHandler(createDocumentoSchema, 'body'),
+    validatorHandler(createPuestoSchema, 'body'),
     async (req,res) => {
         try {
             const body = req.body;
             const create = await service.create(body);
             res.status(201).json(create);
         } catch (err) {
-            res.status(500).json({ error: err });
+            res.status(500).json({ error:err});
         }
 });
 
 router.patch('/:id',
     authMiddleware.authenticateToken,
-    validatorHandler(updateDocumentoSchema, 'body'),
+    validatorHandler(updatePuestoSchema, 'body'),
     async (req, res) =>{
         try {
             const { id } = req.params;

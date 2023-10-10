@@ -1,12 +1,12 @@
 const expres = require('express');
-const documento = require('../services/documento.services')
+const nombresEmpleados = require('../services/nombresEmpleados.services')
 const validatorHandler = require('./../middlewares/validator.handler');
 const authMiddleware  = require('./../middlewares/auth');
 
-const { createDocumentoSchema, updateDocumentoSchema, getDocumentoSchema } = require('./../schemas/documentoSchema');
+const { createNombreEmpleadoSchema, updateNombreEmpleadoSchema, getNombreEmpleadoSchema } = require('./../schemas/nombresEmpleadoSchema');
 
 const router = expres.Router();
-const service = new documento();
+const service = new nombresEmpleados();
 
 
 router.get('/', async (req,res) =>{
@@ -22,7 +22,7 @@ router.get('/:id', async (req,res) => {
 
 router.post('/',
     authMiddleware.authenticateToken,
-    validatorHandler(createDocumentoSchema, 'body'),
+    validatorHandler(createNombreEmpleadoSchema, 'body'),
     async (req,res) => {
         try {
             const body = req.body;
@@ -35,7 +35,7 @@ router.post('/',
 
 router.patch('/:id',
     authMiddleware.authenticateToken,
-    validatorHandler(updateDocumentoSchema, 'body'),
+    validatorHandler(updateNombreEmpleadoSchema, 'body'),
     async (req, res) =>{
         try {
             const { id } = req.params;
