@@ -7,7 +7,7 @@ class tipoContratacionService {
             const create = await prisma.tipo_contratacion.create({
                 data: {
                     id_empresa: data.id_empresa,
-                    descripcion: descripcion.estado_documento
+                    descripcion: data.descripcion
                 }
             })
             return create;
@@ -20,11 +20,11 @@ class tipoContratacionService {
         try {
             const find = await prisma.tipo_contratacion.findMany({
                 select:{
-                    id_empresa: true,
+                    id_tipo_contratacion: true,
                     descripcion: true,
                     empresa: {
                         select: {
-                            descripcion
+                            descripcion: true
                         }
                     }
                 }
@@ -40,11 +40,11 @@ class tipoContratacionService {
         try {
             const findOne = await prisma.tipo_contratacion.findUnique({
                 select:{
-                    id_empresa: true,
+                    id_tipo_contratacion: true,
                     descripcion: true,
                     empresa: {
                         select: {
-                            descripcion
+                            descripcion: true
                         }
                     }
                 },
