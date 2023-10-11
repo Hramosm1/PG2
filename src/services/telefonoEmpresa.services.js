@@ -18,13 +18,34 @@ class telefonoEmpresaService {
     }
 
     async find(){
-        const telefonoEmpresa = await prisma.telefono_empresa.findMany();
+        const telefonoEmpresa = await prisma.telefono_empresa.findMany({
+            select: {
+                id_telefono_empresa: true,
+                telefono: true,
+                estado_telefono_empresa: true,
+                empresa: {
+                    select: {
+                        descripcion: true
+                    }
+                }
+            }
+        });
         return telefonoEmpresa; 
     }
 
     async findOne(id){
         try {
             const telefonoEmpresaOne = await prisma.telefono_empresa.findUnique({
+                select: {
+                    id_telefono_empresa: true,
+                    telefono: true,
+                    estado_telefono_empresa: true,
+                    empresa: {
+                        select: {
+                            descripcion: true
+                        }
+                    }
+                },
                 where: {
                     id_telefono_empresa: parseInt(id),
                 },

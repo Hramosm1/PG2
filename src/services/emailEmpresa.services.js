@@ -25,7 +25,7 @@ class emailEmpresaService {
                 estado_email_empresa: true,
                 empresa: {
                     select: {
-                        descripcion
+                        descripcion: true
                     }
                 }
             }
@@ -42,7 +42,7 @@ class emailEmpresaService {
                     estado_email_empresa: true,
                     empresa: {
                         select: {
-                            descripcion
+                            descripcion: true
                         }
                     }
                 },

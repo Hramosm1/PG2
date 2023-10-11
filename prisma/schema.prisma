@@ -80,7 +80,7 @@ model empresa {
   id_estado         Int?
   email_empresa     email_empresa[]
   estado_empresa    estado_empresa?     @relation(fields: [id_estado], references: [id_estado_empresa], onDelete: NoAction, onUpdate: NoAction, map: "empresa_ibfk_1")
-  telefono_empresa  telefono_empresa?
+  telefono_empresa  telefono_empresa[]
   tipo_contratacion tipo_contratacion[]
 
   @@index([id_estado], map: "id_estado")
@@ -236,7 +236,9 @@ model telefono_empresa {
   id_empresa              Int?
   telefono                String?  @db.VarChar(255)
   estado_telefono_empresa Boolean?
-  empresa                 empresa  @relation(fields: [id_telefono_empresa], references: [id_empresa], onDelete: NoAction, onUpdate: NoAction, map: "telefono_empresa_ibfk_1")
+  empresa                 empresa? @relation(fields: [id_empresa], references: [id_empresa], onDelete: NoAction, onUpdate: NoAction, map: "telefono_empresa_ibfk_1")
+
+  @@index([id_empresa], map: "telefono_empresa_ibfk_1")
 }
 
 model tipo_contratacion {

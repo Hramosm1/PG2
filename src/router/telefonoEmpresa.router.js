@@ -28,8 +28,9 @@ router.post('/',
             const body = req.body;
             const createTelefonoEmpresa = await service.create(body);
             res.status(201).json(createTelefonoEmpresa);
-        } catch (error) {
-            res.status(500).json({ error: 'Error al crear el telefono' });
+            console.log(createTelefonoEmpresa)
+        } catch (err) {
+            res.status(500).json({ error: err });
         }
 });
 
