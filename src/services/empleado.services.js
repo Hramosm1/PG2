@@ -6,7 +6,9 @@ class empleadoService {
         try {
             const create = await prisma.empleado.create({
                 data: {
-                    id_puesto: data.id_puesto
+                    id_puesto: data.id_puesto,
+                    apellido: data.apellido,
+                    nombre: data.nombre
                 }
             })
             return create;
@@ -20,33 +22,8 @@ class empleadoService {
             const find = await prisma.empleado.findMany({
                 select:{
                     id_empleado: true,
-                    id_puesto: true,
-                    puesto: {
-                        select: {
-                            salario_mensual:true,
-                            descripcion: true,
-                            tipo_contratacion: {
-                                select: {
-                                    descripcion: true
-                                }
-                            }
-                        }
-                    },
-                    documento: {
-                        select: {
-                            no_documento: true,
-                            tipo_documento: {
-                                select: {
-                                    descripcion
-                                }
-                            }
-                        }
-                    },
-                    telefono_empleado: {
-                        select: {
-                            telefono_empleado: true
-                        }
-                    },
+                    apellido: true,
+                    nombre: true,
                     nombres_empleados: {
                         select: {
                             no_orden: true,
@@ -57,11 +34,6 @@ class empleadoService {
                         select: {
                             no_orden: true,
                             apellido: true
-                        }
-                    },
-                    email_empleado: {
-                        select: {
-                            email_empleado: true
                         }
                     }
                 }
@@ -78,33 +50,8 @@ class empleadoService {
             const findOne = await prisma.empleado.findUnique({
                 select:{
                     id_empleado: true,
-                    id_puesto: true,
-                    puesto: {
-                        select: {
-                            salario_mensual:true,
-                            descripcion: true,
-                            tipo_contratacion: {
-                                select: {
-                                    descripcion: true
-                                }
-                            }
-                        }
-                    },
-                    documento: {
-                        select: {
-                            no_documento: true,
-                            tipo_documento: {
-                                select: {
-                                    descripcion
-                                }
-                            }
-                        }
-                    },
-                    telefono_empleado: {
-                        select: {
-                            telefono_empleado: true
-                        }
-                    },
+                    apellido: true,
+                    nombre: true,
                     nombres_empleados: {
                         select: {
                             no_orden: true,
@@ -115,11 +62,6 @@ class empleadoService {
                         select: {
                             no_orden: true,
                             apellido: true
-                        }
-                    },
-                    email_empleado: {
-                        select: {
-                            email_empleado: true
                         }
                     }
                 },
@@ -140,6 +82,8 @@ class empleadoService {
             },
             data: {
                 id_puesto: changes.id_puesto,
+                apellido: changes.apellido,
+                nombre: changes.nombre,
             }
         });
         return update;

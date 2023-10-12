@@ -61,6 +61,8 @@ model email_empresa {
 model empleado {
   id_empleado         Int                   @id @default(autoincrement())
   id_puesto           Int?
+  nombre              String?               @db.VarChar(255)
+  apellido            String?               @db.VarChar(255)
   apellidos_empleados apellidos_empleados[]
   asistencia          asistencia[]
   documento           documento[]

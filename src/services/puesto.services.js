@@ -22,12 +22,16 @@ class puestoService {
             const find = await prisma.puesto.findMany({
                 select:{
                     id_puesto: true,
-                    id_tipo_contratacion: true,
                     salario_mensual: true,
                     descripcion: true,
                     tipo_contratacion: {
                         select: {
-                            descripcion
+                            descripcion: true,
+                            empresa: {
+                                select: {
+                                    descripcion: true
+                                }
+                            }
                         }
                     }
                 }
@@ -44,12 +48,16 @@ class puestoService {
             const findOne = await prisma.puesto.findUnique({
                 select:{
                     id_puesto: true,
-                    id_tipo_contratacion: true,
                     salario_mensual: true,
                     descripcion: true,
                     tipo_contratacion: {
                         select: {
-                            descripcion
+                            descripcion: true,
+                            empresa: {
+                                select: {
+                                    descripcion: true
+                                }
+                            }
                         }
                     }
                 },
