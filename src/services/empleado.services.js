@@ -24,16 +24,10 @@ class empleadoService {
                     id_empleado: true,
                     apellido: true,
                     nombre: true,
-                    nombres_empleados: {
+                    puesto: {
                         select: {
-                            no_orden: true,
-                            nombre: true
-                        }
-                    },
-                    apellidos_empleados: {
-                        select: {
-                            no_orden: true,
-                            apellido: true
+                            descripcion: true,
+                            salario_mensual: true
                         }
                     }
                 }
@@ -52,16 +46,10 @@ class empleadoService {
                     id_empleado: true,
                     apellido: true,
                     nombre: true,
-                    nombres_empleados: {
+                    puesto: {
                         select: {
-                            no_orden: true,
-                            nombre: true
-                        }
-                    },
-                    apellidos_empleados: {
-                        select: {
-                            no_orden: true,
-                            apellido: true
+                            descripcion: true,
+                            salario_mensual: true
                         }
                     }
                 },

@@ -22,9 +22,14 @@ class nombresEmpleadosService {
             const find = await prisma.nombres_empleados.findMany({
                 select:{
                     id_nombres_empleados: true,
-                    id_empleado: true,
                     no_orden: true,
-                    nombre: true
+                    nombre: true,
+                    empleado: {
+                        select: {
+                            nombre: true,
+                            apellido: true
+                        }
+                    }
                 }
             });
             return find;
@@ -39,9 +44,14 @@ class nombresEmpleadosService {
             const findOne = await prisma.nombres_empleados.findUnique({
                 select:{
                     id_nombres_empleados: true,
-                    id_empleado: true,
                     no_orden: true,
-                    nombre: true
+                    nombre: true,
+                    empleado: {
+                        select: {
+                            nombre: true,
+                            apellido: true
+                        }
+                    }
                 },
                 where: {
                     id_nombres_empleados: parseInt(id),
