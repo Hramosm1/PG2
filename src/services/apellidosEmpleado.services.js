@@ -8,7 +8,7 @@ class apellidosEmpleadosService {
                 data: {
                     id_empleado: data.id_empleado,
                     no_orden: data.no_orden,
-                    apellido: apellido
+                    apellido: data.apellido
                 }
             })
             return create;
