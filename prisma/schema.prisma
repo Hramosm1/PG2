@@ -20,7 +20,8 @@ model apellidos_empleados {
 model asistencia {
   id_asistencia Int       @id @default(autoincrement())
   id_empleado   Int?
-  fecha_hora    DateTime? @db.DateTime(0)
+  fecha_hora    DateTime? @default(now()) @db.DateTime(0)
+  actividad     String?   @db.VarChar(255)
   empleado      empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "asistencia_ibfk_1")
 
   @@index([id_empleado], map: "id_empleado")
