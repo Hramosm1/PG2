@@ -31,7 +31,6 @@ const tipoDocumento = require('./src/router/tipoDocumento.router');
 const equipopp = require('./src/router/epp.router');
 const asignacionEpp = require('./src/router/asignacionEpp.router');
 
-
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
 
 const app = express();

@@ -74,8 +74,7 @@ class AsignacionEppService {
                 id_asignacion_epp: parseInt(id),
             },
             data: {
-                id_empleado: changes.id_empleado,
-                id_epp: changes.id_epp
+                id_epp: parseInt(changes.id_epp)
             }
         });
         return update;

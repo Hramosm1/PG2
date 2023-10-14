@@ -43,7 +43,7 @@ router.patch('/:id',
             const update = await service.update(id, body);
             res.json(update);
         } catch (err) {
-            res.status(500).json({ error: err });
+            res.status(501).json({ error: err });
         }
 })
 

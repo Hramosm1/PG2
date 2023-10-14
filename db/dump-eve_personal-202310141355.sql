@@ -30,7 +30,7 @@ CREATE TABLE `apellidos_empleados` (
   PRIMARY KEY (`id_apellidos_empleados`),
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `apellidos_empleados_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,37 @@ CREATE TABLE `apellidos_empleados` (
 
 LOCK TABLES `apellidos_empleados` WRITE;
 /*!40000 ALTER TABLE `apellidos_empleados` DISABLE KEYS */;
+INSERT INTO `apellidos_empleados` VALUES (1,1,1,'Lopez');
 /*!40000 ALTER TABLE `apellidos_empleados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `asignacion_epp`
+--
+
+DROP TABLE IF EXISTS `asignacion_epp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `asignacion_epp` (
+  `id_asignacion_epp` int NOT NULL AUTO_INCREMENT,
+  `id_empleado` int NOT NULL,
+  `id_epp` int NOT NULL,
+  PRIMARY KEY (`id_asignacion_epp`),
+  KEY `FK_epp_empleado` (`id_empleado`),
+  KEY `FK_epp_epp` (`id_epp`),
+  CONSTRAINT `FK_epp_empleado` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`),
+  CONSTRAINT `FK_epp_epp` FOREIGN KEY (`id_epp`) REFERENCES `epp` (`id_epp`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `asignacion_epp`
+--
+
+LOCK TABLES `asignacion_epp` WRITE;
+/*!40000 ALTER TABLE `asignacion_epp` DISABLE KEYS */;
+INSERT INTO `asignacion_epp` VALUES (1,1,1),(2,2,3);
+/*!40000 ALTER TABLE `asignacion_epp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -52,11 +82,12 @@ DROP TABLE IF EXISTS `asistencia`;
 CREATE TABLE `asistencia` (
   `id_asistencia` int NOT NULL AUTO_INCREMENT,
   `id_empleado` int DEFAULT NULL,
-  `fecha_hora` datetime DEFAULT NULL,
+  `fecha_hora` datetime DEFAULT CURRENT_TIMESTAMP,
+  `actividad` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_asistencia`),
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +96,7 @@ CREATE TABLE `asistencia` (
 
 LOCK TABLES `asistencia` WRITE;
 /*!40000 ALTER TABLE `asistencia` DISABLE KEYS */;
+INSERT INTO `asistencia` VALUES (1,1,'2023-09-13 01:21:27','Entrada'),(2,1,'2023-10-13 01:23:06','Salida'),(3,1,'2023-10-13 02:30:13','salida al banio'),(4,1,'2023-10-13 02:49:16','salida'),(5,2,'2023-10-13 02:49:27','entrada');
 /*!40000 ALTER TABLE `asistencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +171,7 @@ CREATE TABLE `email_empresa` (
   PRIMARY KEY (`id_email_empresa`),
   KEY `id_empresa` (`id_empresa`),
   CONSTRAINT `email_empresa_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +180,7 @@ CREATE TABLE `email_empresa` (
 
 LOCK TABLES `email_empresa` WRITE;
 /*!40000 ALTER TABLE `email_empresa` DISABLE KEYS */;
+INSERT INTO `email_empresa` VALUES (1,2,'toledo@gmail.com',1),(2,3,'bayer@gmail.com',1),(4,2,'toledo2@gmail.com',1),(5,6,'gbm@gmail.com',1);
 /*!40000 ALTER TABLE `email_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,10 +194,12 @@ DROP TABLE IF EXISTS `empleado`;
 CREATE TABLE `empleado` (
   `id_empleado` int NOT NULL AUTO_INCREMENT,
   `id_puesto` int DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `apellido` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_empleado`),
   KEY `id_puesto` (`id_puesto`),
   CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`id_puesto`) REFERENCES `puesto` (`id_puesto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,6 +208,7 @@ CREATE TABLE `empleado` (
 
 LOCK TABLES `empleado` WRITE;
 /*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
+INSERT INTO `empleado` VALUES (1,1,'Hector','Ramos'),(2,3,'Katheryn','Rojas');
 /*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +226,7 @@ CREATE TABLE `empresa` (
   PRIMARY KEY (`id_empresa`),
   KEY `id_estado` (`id_estado`),
   CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado_empresa` (`id_estado_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +235,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (2,'Toledo',1),(3,'Bayer',6),(5,'Unipharm',8);
+INSERT INTO `empresa` VALUES (2,'Toledo',1),(3,'Bayer',6),(5,'Unipharm',8),(6,'GBM',1);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +256,7 @@ CREATE TABLE `entrevista` (
   KEY `fk_entrevista_plaza` (`id_plaza`),
   CONSTRAINT `fk_entrevista_estado_entre` FOREIGN KEY (`id_estado_entrevista`) REFERENCES `estado_entrevista` (`id_estado_entrevista`),
   CONSTRAINT `fk_entrevista_plaza` FOREIGN KEY (`id_plaza`) REFERENCES `plaza` (`id_plaza`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,8 +265,32 @@ CREATE TABLE `entrevista` (
 
 LOCK TABLES `entrevista` WRITE;
 /*!40000 ALTER TABLE `entrevista` DISABLE KEYS */;
-INSERT INTO `entrevista` VALUES (1,3,3,'2023-09-20 00:00:00');
+INSERT INTO `entrevista` VALUES (1,3,3,'2023-09-20 00:00:00'),(3,2,3,'2023-10-14 06:00:00');
 /*!40000 ALTER TABLE `entrevista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `epp`
+--
+
+DROP TABLE IF EXISTS `epp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `epp` (
+  `id_epp` int NOT NULL AUTO_INCREMENT,
+  `equipo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_epp`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `epp`
+--
+
+LOCK TABLES `epp` WRITE;
+/*!40000 ALTER TABLE `epp` DISABLE KEYS */;
+INSERT INTO `epp` VALUES (1,'Casco de proteccion'),(3,'Arnes');
+/*!40000 ALTER TABLE `epp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -419,7 +479,7 @@ CREATE TABLE `nombres_empleados` (
   PRIMARY KEY (`id_nombres_empleados`),
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `nombres_empleados_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,6 +488,7 @@ CREATE TABLE `nombres_empleados` (
 
 LOCK TABLES `nombres_empleados` WRITE;
 /*!40000 ALTER TABLE `nombres_empleados` DISABLE KEYS */;
+INSERT INTO `nombres_empleados` VALUES (1,1,1,'Antonio');
 /*!40000 ALTER TABLE `nombres_empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,10 +504,16 @@ CREATE TABLE `nomina` (
   `id_empleado` int DEFAULT NULL,
   `fecha_inicio` datetime DEFAULT NULL,
   `fecha_fin` datetime DEFAULT NULL,
+  `diasLaborados` int DEFAULT NULL,
+  `horasExtras` float DEFAULT NULL,
+  `bonificaciones` float DEFAULT NULL,
+  `igss` float DEFAULT NULL,
+  `irtra` float DEFAULT NULL,
+  `totalPagar` float DEFAULT NULL,
   PRIMARY KEY (`id_nomina`),
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,6 +522,7 @@ CREATE TABLE `nomina` (
 
 LOCK TABLES `nomina` WRITE;
 /*!40000 ALTER TABLE `nomina` DISABLE KEYS */;
+INSERT INTO `nomina` VALUES (1,1,'2023-10-01 06:00:00','2023-10-31 06:00:00',30,129.714,250,877.128,181.6,17481),(3,2,'2023-10-01 06:00:00','2023-10-31 06:00:00',30,0,325,483,100,9742);
 /*!40000 ALTER TABLE `nomina` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -564,7 +632,7 @@ CREATE TABLE `puesto` (
   PRIMARY KEY (`id_puesto`),
   KEY `id_tipo_contratacion` (`id_tipo_contratacion`),
   CONSTRAINT `puesto_ibfk_1` FOREIGN KEY (`id_tipo_contratacion`) REFERENCES `tipo_contratacion` (`id_tipo_contratacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -573,6 +641,7 @@ CREATE TABLE `puesto` (
 
 LOCK TABLES `puesto` WRITE;
 /*!40000 ALTER TABLE `puesto` DISABLE KEYS */;
+INSERT INTO `puesto` VALUES (1,1,18160.00,'bodeguero'),(3,5,10000.00,'Desarrollador JR'),(4,5,1000.00,'Barrendero');
 /*!40000 ALTER TABLE `puesto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -641,8 +710,9 @@ CREATE TABLE `telefono_empresa` (
   `telefono` varchar(255) DEFAULT NULL,
   `estado_telefono_empresa` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_telefono_empresa`),
-  CONSTRAINT `telefono_empresa_ibfk_1` FOREIGN KEY (`id_telefono_empresa`) REFERENCES `empresa` (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `telefono_empresa_ibfk_1` (`id_empresa`),
+  CONSTRAINT `telefono_empresa_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -651,7 +721,7 @@ CREATE TABLE `telefono_empresa` (
 
 LOCK TABLES `telefono_empresa` WRITE;
 /*!40000 ALTER TABLE `telefono_empresa` DISABLE KEYS */;
-INSERT INTO `telefono_empresa` VALUES (2,2,'12345678',1);
+INSERT INTO `telefono_empresa` VALUES (2,2,'87654321',1),(24,3,'11',1);
 /*!40000 ALTER TABLE `telefono_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -669,7 +739,7 @@ CREATE TABLE `tipo_contratacion` (
   PRIMARY KEY (`id_tipo_contratacion`),
   KEY `id_empresa` (`id_empresa`),
   CONSTRAINT `tipo_contratacion_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -678,6 +748,7 @@ CREATE TABLE `tipo_contratacion` (
 
 LOCK TABLES `tipo_contratacion` WRITE;
 /*!40000 ALTER TABLE `tipo_contratacion` DISABLE KEYS */;
+INSERT INTO `tipo_contratacion` VALUES (1,3,'Temporal'),(2,3,'Plaza fija'),(5,2,'Plaza fija'),(6,6,'Fijo');
 /*!40000 ALTER TABLE `tipo_contratacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -747,4 +818,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-23 21:14:43
+-- Dump completed on 2023-10-14 13:55:10

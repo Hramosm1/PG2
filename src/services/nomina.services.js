@@ -7,8 +7,14 @@ class nominaService {
             const create = await prisma.nomina.create({
                 data: {
                     id_empleado: data.id_empleado,
-                    telefono_empleado: data.telefono_empleado,
-                    estado_telefono_empleado: data.estado_telefono_empleado
+                    fecha_inicio: data.fecha_inicio,
+                    fecha_fin: data.fecha_fin,
+                    diasLaborados: data.diasLaborados,
+                    horasExtras: data.horasExtras,
+                    bonificaciones: data.bonificaciones,
+                    igss: data.igss,
+                    irtra: data.irtra,
+                    totalPagar: data.totalPagar
                 }
             })
             return create;
@@ -19,15 +25,29 @@ class nominaService {
 
     async find(){
         try {
+            const mesEnCurso = new Date().getMonth() + 1; // Mes actual
             const find = await prisma.nomina.findMany({
-                select:{
+                where: {
+                    fecha_inicio: {
+                      // Filtra por el mes en curso
+                      gte: new Date(new Date().getFullYear(), mesEnCurso - 1, 1), // Primer día del mes
+                      lt: new Date(new Date().getFullYear(), mesEnCurso, 1) // Primer día del próximo mes
+                    }
+                  },
+                  select:{
                     id_nomina: true,
-                    id_empleado: true,
                     fecha_inicio: true,
                     fecha_fin: true,
+                    diasLaborados: true,
+                    horasExtras: true,
+                    bonificaciones: true,
+                    igss: true,
+                    irtra: true,
+                    totalPagar: true,
                     empleado: {
                         select: {
-                            id_empleado
+                            nombre: true,
+                            apellido: true
                         }
                     }
                 }
@@ -44,17 +64,23 @@ class nominaService {
             const findOne = await prisma.nomina.findUnique({
                 select:{
                     id_nomina: true,
-                    id_empleado: true,
                     fecha_inicio: true,
                     fecha_fin: true,
+                    diasLaborados: true,
+                    horasExtras: true,
+                    bonificaciones: true,
+                    igss: true,
+                    irtra: true,
+                    totalPagar: true,
                     empleado: {
                         select: {
-                            id_empleado
+                            nombre: true,
+                            apellido: true
                         }
                     }
                 },
                 where: {
-                    id_nomina: parseInt(id),
+                    id_nomina: parseInt(id)
                 },
             });
             return findOne;

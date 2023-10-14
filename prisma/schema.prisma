@@ -159,11 +159,17 @@ model nombres_empleados {
 }
 
 model nomina {
-  id_nomina    Int       @id @default(autoincrement())
-  id_empleado  Int?
-  fecha_inicio DateTime? @db.DateTime(0)
-  fecha_fin    DateTime? @db.DateTime(0)
-  empleado     empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "nomina_ibfk_1")
+  id_nomina      Int       @id @default(autoincrement())
+  id_empleado    Int?
+  fecha_inicio   DateTime? @db.DateTime(0)
+  fecha_fin      DateTime? @db.DateTime(0)
+  diasLaborados  Int?
+  horasExtras    Float?    @db.Float
+  bonificaciones Float?    @db.Float
+  igss           Float?    @db.Float
+  irtra          Float?    @db.Float
+  totalPagar     Float?    @db.Float
+  empleado       empleado? @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "nomina_ibfk_1")
 
   @@index([id_empleado], map: "id_empleado")
 }
