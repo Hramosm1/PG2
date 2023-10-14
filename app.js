@@ -28,6 +28,8 @@ const puesto = require('./src/router/puesto.router');
 const telefonoEmpleado = require('./src/router/telefonoEmpleado.router');
 const tipoContratacion = require('./src/router/tipoContratacion.router');
 const tipoDocumento = require('./src/router/tipoDocumento.router');
+const equipopp = require('./src/router/epp.router');
+const asignacionEpp = require('./src/router/asignacionEpp.router');
 
 
 const { boomErrorHandler } = require('./src/middlewares/error.handler');
@@ -47,6 +49,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Utiliza el middleware cors
 
+app.use('/asignacionEpp', asignacionEpp);
+app.use('/epp', equipopp);
 app.use('/tipoDocumento', tipoDocumento);
 app.use('/tipoContratacion', tipoContratacion);
 app.use('/telefonoEmpleado', telefonoEmpleado);

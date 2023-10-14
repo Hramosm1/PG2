@@ -25,12 +25,12 @@ class AsignacionEppService {
                         select: {
                             nombre: true,
                             apellido: true
-                        },
+                        }
+                    },
                     epp: {
                         select: {
                             equipo: true
                         }
-                    }
                     }
                 }
             });
@@ -50,16 +50,16 @@ class AsignacionEppService {
                         select: {
                             nombre: true,
                             apellido: true
-                        },
+                        }
+                    },
                     epp: {
                         select: {
                             equipo: true
                         }
                     }
-                    }
                 },
                 where: {
-                    id_epp: parseInt(id),
+                    id_asignacion_epp: parseInt(id),
                 },
             });
             return findOne;
