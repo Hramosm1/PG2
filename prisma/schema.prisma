@@ -65,6 +65,7 @@ model empleado {
   nombre              String?               @db.VarChar(255)
   apellido            String?               @db.VarChar(255)
   apellidos_empleados apellidos_empleados[]
+  asignacion_epp      asignacion_epp[]
   asistencia          asistencia[]
   documento           documento[]
   email_empleado      email_empleado[]
@@ -270,4 +271,21 @@ model usuarios {
   rol        rol?    @relation(fields: [id_rol], references: [id_rol], onDelete: NoAction, onUpdate: NoAction, map: "usuarios_ibfk_1")
 
   @@index([id_rol], map: "id_rol")
+}
+
+model asignacion_epp {
+  id_asignacion_epp Int      @id @default(autoincrement())
+  id_empleado       Int
+  id_epp            Int
+  empleado          empleado @relation(fields: [id_empleado], references: [id_empleado], onDelete: NoAction, onUpdate: NoAction, map: "FK_epp_empleado")
+  epp               epp      @relation(fields: [id_epp], references: [id_epp], onDelete: NoAction, onUpdate: NoAction, map: "FK_epp_epp")
+
+  @@index([id_empleado], map: "FK_epp_empleado")
+  @@index([id_epp], map: "FK_epp_epp")
+}
+
+model epp {
+  id_epp         Int              @id @default(autoincrement())
+  equipo         String?          @db.VarChar(255)
+  asignacion_epp asignacion_epp[]
 }
