@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node dist/bundle.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,10 @@
     "jsonwebtoken": "^9.0.1",
     "nodemon": "^3.0.1",
     "prisma": "^5.1.1"
+  },
+  "devDependencies": {
+    "nock": "^13.5.6",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
